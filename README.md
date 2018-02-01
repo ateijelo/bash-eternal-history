@@ -5,9 +5,11 @@
 Clone or download somewhere and source `bash-eternal-history.sh` on your `~/.bashrc`.
 This is a possible way to do it:
 
-    git clone git@github.com:ateijelo/bash-eternal-history.git
-    cd bash-eternal-history
-    echo "source \"$PWD/bash-eternal-history.sh\"" >> ~/.bashrc
+```bash
+$ git clone git@github.com:ateijelo/bash-eternal-history.git
+$ cd bash-eternal-history
+$ echo "source \"$PWD/bash-eternal-history.sh\"" >> ~/.bashrc
+```
 
 ### Usage
 
