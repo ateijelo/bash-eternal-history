@@ -1,16 +1,30 @@
 source ${BASH_SOURCE[0]%/*}/bash-preexec.sh
 
+BEH_LOG_BEFORE_COMMAND=yes
+BEH_LOG_AFTER_COMMAND=yes
+
 preexec() {
+    if [ "$BEH_LOG_BEFORE_COMMAND" != "yes" ]; then return; fi
     if [ -n "$MC_SID" ]; then return; fi # disable inside Midnight Commander
-    ENABLE_PRECMD="yes"
-    { printf "$$ $USER %(%s)T - " -1 ; history 1 ; } >> ~/.bash_eternal_history
+    BEH_ENABLE_PRECMD="yes"
+    if [ "${BASH_VERSINFO[0]}" -gt 3 ]
+    then
+        { printf "$$ $USER %(%s)T - " -1 ; history 1 ; } >> ~/.bash_eternal_history
+    else
+        { echo -n "$$ $USER $(date +%s) - " ; history 1 ; } >> ~/.bash_eternal_history
+    fi
 }
 
 precmd() {
+    if [ "$BEH_LOG_AFTER_COMMAND" != "yes" ]; then return; fi
     if [ -n "$MC_SID" ]; then return; fi # disable inside Midnight Commander
-    if [ -n "$ENABLE_PRECMD" ]
+    if [ -z "$BEH_ENABLE_PRECMD" ]; then return; fi
+
+    if [ "${BASH_VERSINFO[0]}" -gt 3 ]
     then
         { printf "$$ $USER - %(%s)T " -1 ; history 1 ; } >> ~/.bash_eternal_history
-        unset ENABLE_PRECMD
+    else
+        { echo -n "$$ $USER - $(date +%s) " ; history 1 ; } >> ~/.bash_eternal_history
     fi
+    unset BEH_ENABLE_PRECMD
 }

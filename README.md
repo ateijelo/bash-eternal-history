@@ -16,5 +16,4 @@ logged twice to `~/.bash_eternal_history`, one time before running the command
 and a second time after the command is done.
 
 This is useful to investigate how long a command took to complete. If you'd rather
-have it logged once, currently there are no configuration, edit the code at will.
-It's quite short (for the time being)
+have it logged once, check the variables at the beginning of the code.
