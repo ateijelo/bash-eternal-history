@@ -1,4 +1,4 @@
-source ${BASH_SOURCE[0]%/*}/bash-preexec/bash-preexec.sh
+source ${BASH_SOURCE[0]%/*}/bash-preexec.sh
 
 preexec() {
     if [ -n "$MC_SID" ]; then return; fi # disable inside Midnight Commander
