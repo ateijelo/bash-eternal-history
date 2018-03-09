@@ -1,4 +1,7 @@
-source ${BASH_SOURCE[0]%/*}/bash-preexec.sh
+if [ -z "$ZSH" ]
+then
+    source ${BASH_SOURCE[0]%/*}/bash-preexec.sh
+fi
 
 BEH_LOG_BEFORE_COMMAND=yes
 BEH_LOG_AFTER_COMMAND=yes
