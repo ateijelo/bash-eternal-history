@@ -19,3 +19,12 @@ and a second time after the command is done.
 
 This is useful to investigate how long a command took to complete. If you'd rather
 have it logged once, check the variables at the beginning of the code.
+
+I also added the following function to my `~/.bashrc`, to perform searches:
+
+```bash
+function bh()
+{
+    grep -a "$@" ~/.bash_eternal_history
+}
+```
